@@ -1,0 +1,8 @@
+{
+  "mainnet": {
+    "AaveTokenGatewayV3": {
+      "address": "0xD322A49006FC828F9B5B37Ab215F99B4E5caB19C",
+      "startBlock": 16291158
+    }
+  }
+}

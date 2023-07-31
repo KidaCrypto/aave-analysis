@@ -1,0 +1,24 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AaveTokenGatewayV3
+    network: mainnet
+    source:
+      address: "0xD322A49006FC828F9B5B37Ab215F99B4E5caB19C"
+      abi: AaveTokenGatewayV3
+      startBlock: 16291158
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+      abis:
+        - name: AaveTokenGatewayV3
+          file: ./abis/AaveTokenGatewayV3.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/aave-token-gateway-v-3.ts
