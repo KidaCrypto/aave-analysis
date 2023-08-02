@@ -3,22 +3,30 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: AaveTokenGatewayV3
-    network: mainnet
+    name: LendingPoolCore
+    network: arbitrum-one
     source:
-      address: "0xD322A49006FC828F9B5B37Ab215F99B4E5caB19C"
-      abi: AaveTokenGatewayV3
-      startBlock: 16291158
+      address: "0x794a61358d6845594f94dc1db02a252b5b4814ad" #v3
+      abi: LendingPoolCore
+      startBlock: 7742429
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.7
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - OwnershipTransferred
+        - APY
+        - TotalDeposit
+        - TotalDepositByMonth
+        - TotalWithdraw
+        - TotalWithdrawByMonth
       abis:
-        - name: AaveTokenGatewayV3
-          file: ./abis/AaveTokenGatewayV3.json
+        - name: LendingPoolCore
+          file: ./abis/LendingPoolCore.json
       eventHandlers:
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-      file: ./src/aave-token-gateway-v-3.ts
+        - event: ReserveDataUpdated(indexed address,uint256,uint256,uint256,uint256,uint256)  
+          handler: handleReserveDataUpdated
+        - event: Supply(indexed address,address,indexed address,uint256,indexed uint16)
+          handler: handleSupply
+        - event: Withdraw(address,address,address,uint256)
+          handler: handleWithdraw
+      file: ./src/lending-pool-core.ts

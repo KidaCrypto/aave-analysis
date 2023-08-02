@@ -1,8 +1,26 @@
-type OwnershipTransferred @entity(immutable: true) {
-  id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type ReserveData @entity {
+  id: ID! #format = YYYY/MM/DD
+  supplyRate: BigInt!
+  stableBorrowRate: BigInt!
+  variableBorrowRate: BigInt!
+}
+
+type TotalDeposit @entity {
+  id: ID! #format = YYYY/MM/DD
+  value: BigInt!
+}
+
+type TotalDepositByMonth @entity {
+  id: ID! #format = YYYY/MM
+  value: BigInt!
+}
+
+type TotalWithdraw @entity {
+  id: ID! #format = YYYY/MM/DD
+  value: BigInt!
+}
+
+type TotalWithdrawByMonth @entity {
+  id: ID! #format = YYYY/MM
+  value: BigInt!
 }
