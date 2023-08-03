@@ -10,21 +10,17 @@ const RESERVE_ADDRESS = "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"; //WETH
 export function handleReserveDataUpdated(
   event: ReserveDataUpdatedEvent
 ): void {
-  log.info("handling reserve", []);
   if(!event) {
     return;
   }
 
   // if it's not weth
   if(event.params.reserve.toHexString() != RESERVE_ADDRESS) {
-    log.info("Reserve Data Updated, Not WETH: " + event.params.reserve.toHexString(), []);
     return;
   }
-  log.info("Reserve Data Updated, Is WETH: " + event.params.reserve.toHexString(), []);
 
   let dateStrings = getDateFromEvent(event);
   let dateStr = dateStrings.dateStr;
-  log.info("Reserve Data Updated, dateStr" + dateStr, []);
 
   // cant use these cause biggest allowable int is i64 instead of uint256
   // let apys = calculateApy(event);
@@ -59,17 +55,14 @@ export function handleReserveDataUpdated(
 
 // when user supplies
 export function handleSupply (event: SupplyEvent): void {
-  log.info("handling supply", []);
   if(!event) {
     return;
   }
 
   // if it's not weth
   if(event.params.reserve.toHexString() != RESERVE_ADDRESS) {
-    log.info("Supply Not WETH: " + event.params.reserve.toHexString(), []);
     return;
   }
-  log.info("Supply Is WETH: " + event.params.reserve.toHexString(), []);
 
   let dateStrings = getDateFromEvent(event);
   let dateStr = dateStrings.dateStr;
@@ -97,17 +90,14 @@ export function handleSupply (event: SupplyEvent): void {
 
 // when user withdraws
 export function handleWithdraw (event: WithdrawEvent): void {
-  log.info("handling withdraw", []);
   if(!event) {
     return;
   }
 
   // if it's not weth
   if(event.params.operator.toHexString() != RESERVE_ADDRESS) {
-    log.info("Withdraw, Not WETH: " + event.params.operator.toHexString(), []);
     return;
   }
-  log.info("Withdraw Is WETH: " + event.params.operator.toHexString(), []);
 
   let dateStrings = getDateFromEvent(event);
   let dateStr = dateStrings.dateStr;
