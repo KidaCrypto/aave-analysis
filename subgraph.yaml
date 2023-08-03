@@ -14,7 +14,7 @@ dataSources:
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - APY
+        - ReserveData
         - TotalDeposit
         - TotalDepositByMonth
         - TotalWithdraw
@@ -27,6 +27,6 @@ dataSources:
           handler: handleReserveDataUpdated
         - event: Supply(indexed address,address,indexed address,uint256,indexed uint16)
           handler: handleSupply
-        - event: Withdraw(address,address,address,uint256)
+        - event: Withdraw(indexed address,indexed address,indexed address,uint256)
           handler: handleWithdraw
       file: ./src/lending-pool-core.ts
